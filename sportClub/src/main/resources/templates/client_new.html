@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Add client</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="fragments/menu :: menu"></div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div th:insert="fragments/menu :: userInfo"></div>
+			<a href="/" class="btn btn-primary" sec:authorize="hasAuthority('admin')">Client list</a>
+		<div class="card mt-3">
+			
+			<div class="card-header">Add new client</div>
+			<div class="card-body">
+					
+				<form action="newClient" method="post" th:object="${client}">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+				<div class="alert alert-danger mb-1 mt-1" th:if="${#fields.hasErrors()}">
+  					<ul>
+  						<li th:each="klaida: ${#fields.errors()}" th:text="${klaida}"></li>
+  					</ul>
+  				</div>
+					<div class="mb-3">
+						<label class="form-Label">Name:</label>
+						<input type="text" name="name" class="form-control" th:value="*{name}" th:errorclass="is-invalid">
+					</div>
+					<div class="mb-3">
+						<label class="form-Label">Surname:</label>
+						<input type="text" name="surname" class="form-control" th:value="*{surname}" th:errorclass="is-invalid">
+					</div>
+					<div class="mb-3">
+						<label class="form-Label">Phone:</label>
+						<input type="text" name="phone" class="form-control" th:value="*{phone}" th:errorclass="is-invalid">
+					</div>
+					<div class="mb-3">
+						<label class="form-Label">Email:</label>
+						<input type="text" name="email" class="form-control" th:value="*{email}" th:errorclass="is-invalid">
+					</div>
+					<div class="mb-3">
+						<label class="form-Label">Username:</label>
+						<input type="text" name="username" class="form-control" th:value="*{username}" th:errorclass="is-invalid">
+					</div>
+					<div class="mb-3">
+						<label class="form-Label">Password:</label>
+						<input type="password" name="password" class="form-control" th:value="*{password}" th:errorclass="is-invalid">
+					</div>
+					<div class="mb-3">
+						<label class="form-Label">Role:</label>
+						<select type="text" name="role" class="form-select" th:value="*{role}" th:errorclass="is-invalid">
+						  	<option th:value="admin">Write and read</option>
+  							<option th:value="client">Read</option>
+  						</select>
+					</div>
+					<button class="btn btn-success">Add</button>				
+				</form>			
+			</div>
+		</div>		
+		</div>
+	</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

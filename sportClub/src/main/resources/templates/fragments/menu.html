@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+			
+  				
+  			
+  			
+  			  <nav th:fragment="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="#">SportClub</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    
+
+	      <div class="float-end">
+	      	<a href="/logout" class="btn btn-primary">Logout</a>
+	      </div>
+	      
+	    </div>
+	  </div>
+</nav>
+  			
+  			 <div th:fragment="userInfo">
+ 	<div class="alert alert-info mt-5" sec:authorize="isAuthenticated()">
+	 	Logged in: <span class="font-weight-bold" sec:authentication="name"></span>,
+	 	Role: <span class="font-weight-bold" sec:authentication="principal.authorities"></span>
+ 	</div>
+ </div>
+</body>
+</html>
