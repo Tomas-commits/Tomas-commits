@@ -63,7 +63,7 @@ public class LoginController {
 		request.login(client.getUsername(), password);
 		return "redirect:/";
 		
-	    model.addAttribute("isRegistred", true);
+	   model.addAttribute("isRegistred", true);
 		return this.login();
 	}
 	
